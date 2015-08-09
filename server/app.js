@@ -9,7 +9,7 @@ var board = require('./routes/board');
 var index = require('./routes/index');
 
 /*var clickers = require('./public/assets/scripts/clickers');*/ //what's teh point of mdule exports again?
-
+// adds remote db
 var mongoURI = "mongodb://jamesthe500:55126aFormerWorkZip@ds031183.mongolab.com:31183/message_board";
 var mongoDB = mongoose.connect(mongoURI).connection;
 
