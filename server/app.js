@@ -10,7 +10,7 @@ var index = require('./routes/index');
 
 /*var clickers = require('./public/assets/scripts/clickers');*/ //what's teh point of mdule exports again?
 
-var mongoURI = "mongodb://localhost:27017/message_board";
+var mongoURI = "mongodb://jamesthe500:55126aFormerWorkZip@ds031183.mongolab.com:31183/message_board";
 var mongoDB = mongoose.connect(mongoURI).connection;
 
 mongoDB.on('error', function(err){
