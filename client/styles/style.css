@@ -12,6 +12,10 @@ h2 {
     color: #f1e1da;
 }
 
+input {
+    color: #383a38;
+}
+
 #board {
     margin: 15px;
 }
