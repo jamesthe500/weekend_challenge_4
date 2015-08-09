@@ -1,0 +1,27 @@
+body {
+    color: #ffffff;
+    background-color: #385f81;
+}
+
+#theForm {
+    margin: 15px;
+}
+
+h2 {
+    text-align: center;
+    color: #f1e1da;
+}
+
+#board {
+    margin: 15px;
+}
+
+.answer {
+    display: inline-block;
+    border: 2px #565656 solid;
+    margin: 4px;
+    border-radius: 4px;
+    background-color: rgba(0, 178, 234, 0.38);
+    
+}
+

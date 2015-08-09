@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weekend 4 Challenge- Admin Page</title>
+    <script type="text/javascript" src="/vendors/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/scripts/adminApp.js"></script>
+    <link rel="stylesheet" href="/vendors/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/styles/style.css">
+</head>
+<body>
+<form id="theForm" method="POST" class="col-md-12">
+    <h2>Today's Question: How's the weather up there?</h2>
+    <label for="name">Your name: </label>
+    <input name="name" id="name" type="text">
+    <label for="answer">Your answer: </label>
+    <input name="answer" id="answer" type="text" size="70">
+    <input type="submit" class="btn" value="Post it up!">
+    <input id="refresh" type="button" class="btn" value="Refresh">
+</form>
+<div id="board"></div>
+
+</body>
+</html>
