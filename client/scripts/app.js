@@ -97,7 +97,7 @@ function updateContainer(data){
 function todaysQuestion(){
     var questions = ["How's the weather up there?", "What inspired you?", "Whom do you love?", "What made you the angriest recently?", "What kind do you have?", "Where do you come from?", "Where does it hurt?", "What is art?", "Have you had that baby yet?", "Would you like something to eat?", "Where did you go wrong?", "How can I make this better?", "Meow?", "PC or Mac?", "What's your favorite potato dish?", "What did you have for dinner last night?"];
     var today = new Date().getTime();
-    var start = 1439164800000;
+    var start = 1439078400000;
     var index = Math.floor((today - start) / 86400000);
     theQuestion = questions[index];
 }
