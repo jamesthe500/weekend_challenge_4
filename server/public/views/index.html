@@ -8,16 +8,17 @@
     <link rel="stylesheet" href="/assets/styles/style.css">
 </head>
 <body>
-<form id="theForm" method="POST" class="col-md-12">
-    <h2>Today's Question: How's the weather up there?</h2>
-    <label for="name">Your name: </label>
-    <input name="name" id="name" type="text">
-    <label for="answer">Your answer: </label>
-    <input name="answer" id="answer" type="text" size="70">
-    <input type="submit" class="btn" value="Post it up!">
-    <input id="refresh" type="button" class="btn" value="Refresh">
-</form>
+<div class="top-row row">
+    <h2>Today's Question: </h2><h1 id="theQuestion"></h1>
+</div>
+<div class="row">
+    <form id="theForm" method="POST" class="col-md-12">
+        <input name="name" id="name" type="text" placeholder="Your Name">
+        <input name="answer" id="answer" type="text" size="70" placeholder="Your Answer">
+        <input type="submit" class="btn btn-info" value="Post it up!">
+        <input id="refresh" type="button" class="btn btn-info" value="Refresh">
+    </form>
+</div>
 <div id="board"></div>
-
 </body>
 </html>
