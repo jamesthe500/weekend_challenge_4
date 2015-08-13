@@ -1,4 +1,5 @@
 var theQuestion = "";
+var index = 0;
 
 $(document).ready(function (){
     todaysQuestion();
@@ -8,7 +9,7 @@ $(document).ready(function (){
     $('#theForm').submit(function(event){
         event.preventDefault();
         var questionPkg = encodeURI(theQuestion);
-        var formData = $('#theForm').serialize() + "&question=" + questionPkg;
+        var formData = $('#theForm').serialize() + "&question=" + questionPkg + "&index=" + index;
         console.log(formData);
         $.ajax({
             type: "POST",
@@ -73,7 +74,8 @@ function updateContainer(data){
     $('#board').empty();
     for(var i = 0; i < data.length; i++){
         if (i+1 == data.length){
-            $('#board').prepend("<div class='entry col-xs-12 col-sm-12 col-md-6 col-lg-6'></div>");
+            var colorIndex = data[i].index % 8;
+            $('#board').prepend("<div class='entry col-xs-12 col-sm-12 col-md-6 col-lg-6 blue" + colorIndex + "'></div>");
             var $el = $("#board").children().first();
             $el.css("display", "none");
             $el.append("<h3>" + data[i].question + "</h3>");
@@ -83,7 +85,8 @@ function updateContainer(data){
             $el.children().last().data("id", data[i]._id);
             $el.slideDown(600);
         } else {
-            $('#board').prepend("<div class='entry col-xs-12 col-sm-12 col-md-6 col-lg-6'></div>");
+            var colorIndex = data[i].index % 8;
+            $('#board').prepend("<div class='entry col-xs-12 col-sm-12 col-md-6 col-lg-6 blue" + colorIndex + "'></div>");
             var $el = $("#board").children().first();
             $el.append("<h3>" + data[i].question + "</h3>");
             $el.append("<p class='word-block aName'>" + data[i].name + " says: </p>");
@@ -98,7 +101,8 @@ function todaysQuestion(){
     var questions = ["How's the weather up there?", "What inspired you?", "Whom do you love?", "What made you the angriest recently?", "What kind do you have?", "Where do you come from?", "Where does it hurt?", "What is art?", "Have you had that baby yet?", "Would you like something to eat?", "Where did you go wrong?", "How can I make this better?", "Meow?", "PC or Mac?", "What's your favorite potato dish?", "What did you have for dinner last night?"];
     var today = new Date().getTime();
     var start = 1439096400000; //midnight, the night of 2015-8-9 in CDT
-    var index = Math.floor((today - start) / 86400000);
-    console.log(today);
+    index = Math.floor((today - start) / 86400000);
+    console.log("now: " + today);
+    console.log("index: " + index);
     theQuestion = questions[index];
 }

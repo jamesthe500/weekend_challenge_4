@@ -4,7 +4,8 @@ var EntrySchema = new mongoose.Schema({
     name : String,
     answer : String,
     question : String,
-    day : Number
+    day : Number,
+    index : Number
 
 });
 

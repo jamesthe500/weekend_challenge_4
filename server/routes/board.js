@@ -22,7 +22,7 @@ router.delete("/:id", function(req, res, next){
 router.get("/", function(req, res, next){
     Entry.find(function(err, entry){
        res. json(entry);
-    });
+    }).sort({_id: 1});
 });
 
 module.exports = router;

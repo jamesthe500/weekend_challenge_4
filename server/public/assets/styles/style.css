@@ -1,6 +1,6 @@
 body {
     color: #ffffff;
-    background-color: #385f81;
+    background-color: #ffc4c9;
 }
 
 #theForm {
@@ -25,22 +25,31 @@ h2, h1 {
     margin: 10px 0 5px 25px;
 }
 
+h1 {
+    font-size: 2.8em;
+}
+
 h2 {
-    margin-top: 16px;
-    color: #f1e1da;
+    font-size: 2.2em;
+    margin-top: +0.6em;
+    color: #005a7c;
 }
 
 .word-block {
     display : inline;
 }
 
+.aName {
+    font-size: 1.3em;
+}
+
 .aAnswer {
-    font-size: large;
+    font-size: 1.6em;
 }
 
 h3 {
     text-align : center;
-    font-size: 20px;
+    font-size: 1.8em;
     color : #e8e8bf;
 }
 
@@ -53,7 +62,24 @@ input {
     border: 2px #565656 solid;
     margin: 4px 0;
     border-radius: 4px;
-    background-color: rgba(0, 178, 234, 0.38);
-    
 }
 
+.blue0 {
+    background-color: #00b7ef;
+}
+
+.blue1, .blue7 {
+    background-color: #0094c7;
+}
+
+.blue2, .blue6 {
+    background-color: #0077a0;
+}
+
+.blue3, .blue5 {
+    background-color: #006283;
+}
+
+.blue4 {
+    background-color: #005a7c;
+}
