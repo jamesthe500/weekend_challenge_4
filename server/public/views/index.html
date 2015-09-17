@@ -3,11 +3,17 @@
 <head>
     <title>The Question of the Day</title>
     <script type="text/javascript" src="/vendors/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendors/jquery/dist/jquery.leanModal.min.js"></script>
     <script type="text/javascript" src="/assets/scripts/app.js"></script>
     <link rel="stylesheet" href="/vendors/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/styles/style.css">
 </head>
 <body>
+<a id="invite" rel="leanModal" name="login" href="#login">Log-in, if you wish</a>
+<!--
+
+Problem: login doesn't work when the user already exists -->
+
 <div class="top-row row">
     <h2>Today's Question: </h2><h1 id="theQuestion"></h1>
 </div>
@@ -20,5 +26,43 @@
     </form>
 </div>
 <div id="board"></div>
+
+<div id="login">
+    <a class="modal_close" href="#"></a>
+    <form class="form" action="/login" method="post">
+        <div>
+
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username"/>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password"/>
+        </div>
+        <div>
+            <input type="submit" value="Log In"/>
+            <a id="returners" rel="leanModal" href="#register">Register</a>
+        </div>
+    </form>
+</div>
+
+<div id="register">
+    <a class="modal_close" href="#"></a>
+    <form class="form" action="/register" method="post">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username"/>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password">
+        </div>
+        <div>
+            <input type="submit" value="Register"/>
+        </div>
+    </form>
+</div>
+
+
 </body>
 </html>

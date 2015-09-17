@@ -3,6 +3,26 @@ body {
     background-color: #ffc4c9;
 }
 
+.invite {
+    color: #52ff5c;
+    font-size: 1em;
+    margin: 4px 0 4px 20px;
+}
+
+.modal_close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: block;
+    width: 25px;
+    height: 25px;
+    background: url(../images/close-icon-sm.png);
+}
+
+.modal_close:hover, .modal_close:focus {
+    background-position: 0 -25px;
+}
+
 #theForm {
     margin: 15px;
 }
@@ -82,4 +102,27 @@ input {
 
 .blue4 {
     background-color: #004466;
+}
+
+#login, #register {
+    width: 300px;
+    height: 140px;
+    position: fixed;
+    left: 50%;
+    margin-left: -202px;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+}
+
+#login {
+    z-index: 100;
+}
+
+#register {
+    z-index: 200;
+}
+
+.form {
+    opacity: 1;
+    margin: 35px auto 0 30px;
 }

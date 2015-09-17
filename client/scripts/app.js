@@ -52,7 +52,14 @@ $(document).ready(function (){
         console.log("refreshed!");
     });
 
+// Experimenting with leanModal
 
+    $('#invite').on('click', function(){
+        $('#register').css("display", "none");
+    }).leanModal({overlay:.4, closeButton: ".modal_close"});
+    $('#returners').on('click', function(){
+      $('#login').css("display", "none");
+    }).leanModal({overlay:.4, closeButton: ".modal_close"});
 
 }); //doc ready
 
@@ -112,6 +119,8 @@ function updateContainerPith(data){
     $el.append("<h3>" + data[i].question + "</h3>");
     $el.append("<p class='word-block aName'>" + data[i].name + " says: </p>");
     $el.append('<p class="word-block aAnswer">\"' + data[i].answer + '\"</p>');
+    // add functionality that checks for users who are admins and gives them delete buttons
+    // then checks to see if the user made this post & lets them edit or delete it through appended buttons.
     /*$el.append("<button class='btn btn-warning deletes' data-id='"+ data[i]._id +"'>DEL</button>");*/ //disabled for gen. users
     $el.children().last().data("id", data[i]._id);
 }
@@ -124,7 +133,7 @@ function todaysQuestion(){
         async: false,
         success: function(data){
             questions = data.questions;
-            console.log("questions: " + data.questions);
+            //console.log("questions: " + data.questions);
         }
 
     }).always(function() {
