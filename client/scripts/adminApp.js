@@ -10,16 +10,24 @@ $(document).ready(function (){
     $('#theForm').submit(function(event){
         event.preventDefault();
         var questionPkg = encodeURI(theQuestion);
+        console.log($('#theForm'));
         var formData = $('#theForm').serialize() + "&question=" + questionPkg + "&index=" + index;
-        console.log(formData);
-        $.ajax({
-            type: "POST",
-            url: "/board",
-            data: formData,
-            success: function(){
-                getDataWithNew();
-            }
-        });
+        if (formData.indexOf('%3C') > 0) {
+            return alert("Please don't use the greater-than (>), nor the less-than (<) symbols.");
+        } else if
+        (formData.indexOf('%3E') > 0) {
+            return alert("Please don't use the greater-than (>), nor the less-than (<) symbols.");
+        } else {
+            console.log(formData);
+            $.ajax({
+                type: "POST",
+                url: "/board",
+                data: formData,
+                success: function () {
+                    getDataWithNew();
+                }
+            });
+        }
     });
 
 
@@ -61,7 +69,6 @@ function getData(){
         type: "GET",
         url: "/board",
         success: function(data){
-            console.log(data);
             $('#board').append(data);
             updateContainer(data);
         }
@@ -82,7 +89,6 @@ function getDataWithNew(){
         type: "GET",
         url: "/board",
         success: function(data){
-            console.log(data);
             $('#board').append(data);
             updateContainerWithNew(data);
         }
