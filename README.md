@@ -16,4 +16,4 @@ Some of the technologies used:<br>
   
 The primary lessons of this project were .json files, and databases. <br>
 
-I plan to improve this project by creating a log-in feature so people can edit thier own answers.
+I plan to improve this project by creating a log-in feature so people can edit their own answers. I'd also like to style it such that a two column rendition doesn't have adjacent boxes misaligned.
