@@ -1,6 +1,7 @@
 var theQuestion = "";
 var index = 0;
 var i = 0;
+var onesHeight = null;
 
 $(document).ready(function (){
     todaysQuestion();
@@ -69,6 +70,7 @@ function getData(){
         type: "GET",
         url: "/board",
         success: function(data){
+            console.log(data);
             $('#board').append(data);
             updateContainer(data);
         }
@@ -78,6 +80,9 @@ function getData(){
 function updateContainer(data){
     $('#board').empty();
     $('#board').css('opacity', 0);
+    if ($(window).width() >= 992){
+        onesHeight = 0;
+    }
     for(i = 0; i < data.length; i++) {
         updateContainerPith(data);
     }
@@ -89,6 +94,7 @@ function getDataWithNew(){
         type: "GET",
         url: "/board",
         success: function(data){
+            console.log(data);
             $('#board').append(data);
             updateContainerWithNew(data);
         }
@@ -97,6 +103,9 @@ function getDataWithNew(){
 
 function updateContainerWithNew(data){
     $('#board').empty();
+    if ($(window).width() >= 992){
+        onesHeight = 0;
+    }
     for(i = 0; i < data.length; i++){
         if (i+1 == data.length){
             updateContainerPith(data);
@@ -120,6 +129,40 @@ function updateContainerPith(data){
     $el.append('<p class="word-block aAnswer">\"' + data[i].answer + '\"</p>');
     $el.append("<button class='btn btn-warning deletes' data-id='"+ data[i]._id +"'>DEL</button>"); //disabled for gen. users
     $el.children().last().data("id", data[i]._id);
+
+    // Setting heights: 1st, see if the screen is even wide enough for mucking about
+    if (onesHeight != null){
+        // if it's even, follow  this pattern. Odd- the other.
+        if (data.length % 2 == 0){
+            // if we're on an even number, set the heights. otherwise, carry on.
+            if (i % 2 != 0){
+                if ($el.height() > $el.next().height()){
+                    onesHeight = $el.height();
+                    $el.next().height(onesHeight);
+                    $el.height(onesHeight);
+                } else {
+                    onesHeight = $el.next().height();
+                    $el.height(onesHeight);
+                    $el.next().height(onesHeight);
+                }
+
+            }
+        } else {
+            // Now if it's odd, set heights, otherwise carry on.
+            if (i % 2 == 0){
+                if ($el.height() > $el.next().height()){
+                    onesHeight = $el.height();
+                    $el.next().height(onesHeight);
+                    $el.height(onesHeight);
+                } else {
+                    onesHeight = $el.next().height();
+                    $el.height(onesHeight);
+                    $el.next().height(onesHeight);
+                }
+
+            }
+        }
+    }
 }
 
 
