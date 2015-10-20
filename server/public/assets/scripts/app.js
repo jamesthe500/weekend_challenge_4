@@ -121,14 +121,16 @@ function updateContainerWithNew(data){
 }
 
 function updateContainerPith(data){
-        var colorIndex = data[i].index % 8;
+    var colorIndex = data[i].index % 8;
     $('#board').prepend("<div class='entry col-xs-12 col-sm-12 col-md-6 col-lg-6 blue" + colorIndex + "'></div>");
     var $el = $("#board").children().first();
     $el.append("<h3>" + data[i].question + "</h3>");
     $el.append("<p class='word-block aName'>" + data[i].name + " says: </p>");
     $el.append('<p class="word-block aAnswer">\"' + data[i].answer + '\"</p>');
-    /*$el.append("<button class='btn btn-warning deletes' data-id='"+ data[i]._id +"'>DEL</button>");*/ //disabled for gen. users
+    /*$el.append("<button style='left:" + ($el.width() - 35) + "px' class='btn btn-warning deletes' data-id='"+ data[i]._id +"'>DEL</button>");*/ //disabled for gen. users
     $el.children().last().data("id", data[i]._id);
+
+    //$el.append("<button class='btn btn-warning deletes' style='top:" + (onesHeight - 49) + "px;left:" + ($el.width() - 67) + "px' data-id='"+ data[i]._id +"'>DEL</button>" ); //disabled for gen. users
 
     // Setting heights: 1st, see if the screen is even wide enough for mucking about
     if (onesHeight != null){
@@ -162,6 +164,8 @@ function updateContainerPith(data){
 
             }
         }
+        /*$el.find("button").css("top", ($el.height() -29) + "px");
+        $el.next().find("button").css("top", ($el.next().height() -29) + "px");*/ // disabled for general users
     }
 }
 

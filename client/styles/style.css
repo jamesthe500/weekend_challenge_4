@@ -17,6 +17,13 @@ input {
 
 .deletes {
     float : right;
+    position: absolute;
+    z-index: 100;
+    opacity: .6;
+}
+
+.deletes:hover {
+    opacity: 1;
 }
 
 h2, h1 {
@@ -62,6 +69,7 @@ input {
     border: 2px #565656 solid;
     margin: 4px 0;
     border-radius: 4px;
+    padding: 0 15px 15px;
 }
 
 .blue0 {
