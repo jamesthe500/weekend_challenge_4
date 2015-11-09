@@ -70,7 +70,6 @@ function getData(){
         type: "GET",
         url: "/board",
         success: function(data){
-            console.log(data);
             $('#board').append(data);
             updateContainer(data);
         }

@@ -4,8 +4,9 @@ You can find a live version of this project at (be patient while it loads)- http
 Some features of the message board: <br>
   • Box coloring gradates from light to dark blue and back again based on the day the question is posted.<br>
   • New questions are posed on a daily basis and are displayed along with the answers.<br>
-  • It animates the addition of new answers and flashes on refresh.
+  • It animates the addition of new answers and flashes on refresh.<br>
   • It uses adaptive web design. <br>
+  • On wider screens, adjacent divs have matching heights.<br>
   
 Some of the technologies used:<br>
   • HTML, CSS<br>
@@ -16,4 +17,4 @@ Some of the technologies used:<br>
   
 The primary lessons of this project were .json files, and databases. <br>
 
-I plan to improve this project by creating a log-in feature so people can edit their own answers. I'd also like to style it such that a two column rendition doesn't have adjacent boxes misaligned.
+I plan to improve this project by creating a log-in feature so people can edit their own answers.

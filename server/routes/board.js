@@ -20,8 +20,9 @@ router.delete("/:id", function(req, res, next){
 });
 
 router.get("/", function(req, res, next){
+    console.log(Entry);
     Entry.find(function(err, entry){
-       res. json(entry);
+       res.json(entry);
     }).sort({_id: 1});
 });
 
