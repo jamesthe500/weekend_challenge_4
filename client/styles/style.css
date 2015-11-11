@@ -1,6 +1,7 @@
 body {
     color: #ffffff;
     background-color: #ffc4c9;
+
 }
 
 #theForm {
@@ -67,7 +68,7 @@ input {
 .entry {
     display: inline-block;
     border: 2px #565656 solid;
-    margin: 4px 0;
+    margin: 3px 0;
     border-radius: 4px;
     padding: 0 15px 15px;
 }
@@ -90,4 +91,14 @@ input {
 
 .blue4 {
     background-color: #004466;
+}
+
+.leftBlue {
+    position: relative;
+    left: -3px;
+}
+
+.rightBlue {
+    position: relative;
+    left: 3px;
 }

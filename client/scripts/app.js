@@ -133,10 +133,12 @@ function updateContainerPith(data){
 
     // Setting heights: 1st, see if the screen is even wide enough for mucking about
     if (onesHeight != null){
-        // if it's even, follow  this pattern. Odd- the other.
+        // if the total number of answers is even, follow  this pattern. Odd- the other.
         if (data.length % 2 == 0){
             // if we're on an even number, set the heights. otherwise, carry on.
             if (i % 2 != 0){
+                $el.addClass('leftBlue');
+                $el.next().addClass('rightBlue');
                 if ($el.height() > $el.next().height()){
                     onesHeight = $el.height();
                     $el.next().height(onesHeight);
@@ -151,6 +153,8 @@ function updateContainerPith(data){
         } else {
             // Now if it's odd, set heights, otherwise carry on.
             if (i % 2 == 0){
+                $el.addClass('leftBlue');
+                $el.next().addClass('rightBlue');
                 if ($el.height() > $el.next().height()){
                     onesHeight = $el.height();
                     $el.next().height(onesHeight);
