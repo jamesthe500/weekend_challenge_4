@@ -129,8 +129,6 @@ function updateContainerPith(data){
     /*$el.append("<button style='left:" + ($el.width() - 35) + "px' class='btn btn-warning deletes' data-id='"+ data[i]._id +"'>DEL</button>");*/ //disabled for gen. users
     $el.children().last().data("id", data[i]._id);
 
-    //$el.append("<button class='btn btn-warning deletes' style='top:" + (onesHeight - 49) + "px;left:" + ($el.width() - 67) + "px' data-id='"+ data[i]._id +"'>DEL</button>" ); //disabled for gen. users
-
     // Setting heights: 1st, see if the screen is even wide enough for mucking about
     if (onesHeight != null){
         // if the total number of answers is even, follow  this pattern. Odd- the other.
@@ -180,7 +178,6 @@ function todaysQuestion(){
         async: false,
         success: function(data){
             questions = data.questions;
-            console.log("questions: " + data.questions);
         }
 
     }).always(function() {
