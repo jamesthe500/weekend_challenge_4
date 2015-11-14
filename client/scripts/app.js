@@ -178,7 +178,6 @@ function todaysQuestion(){
         async: false,
         success: function(data){
             questions = data.questions;
-            console.log("questions: " + data.questions);
         }
 
     }).always(function() {
