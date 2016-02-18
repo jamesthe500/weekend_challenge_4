@@ -99,6 +99,8 @@ function updateContainer(data){
     $('#board').css('opacity', 0);
     if ($(window).width() >= 992){
         onesHeight = 0;
+    } else {
+        onesHeight = null;
     }
     for(i = 0; i < data.length; i++) {
         updateContainerPith(data);

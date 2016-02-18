@@ -2,6 +2,8 @@ var theQuestion = "";
 var index = 0;
 var i = 0;
 var onesHeight = null;
+var allTheAnswers;
+var windowWidth = window.innerWidth;
 
 $(document).ready(function (){
     todaysQuestion();
@@ -58,18 +60,34 @@ $(document).ready(function (){
 
     $("#refresh").on('click', function(){
         getData();
-        console.log("refreshed!");
     });
 
 
 
 }); //doc ready
 
+// corrects the formatting when the user resizes after loading.
+var timedOut;
+$(window).resize(function(){
+    clearTimeout(timedOut);
+    timedOut = setTimeout(doAResize, 500);
+});
+
+function doAResize() {
+    if(windowWidth != window.innerWidth){
+        updateContainer(allTheAnswers);
+        windowWidth = window.innerWidth;
+    }
+
+}
+
+
 function getData(){
     $.ajax({
         type: "GET",
         url: "/board",
         success: function(data){
+            allTheAnswers = data;
             $('#board').append(data);
             updateContainer(data);
         }
@@ -81,11 +99,13 @@ function updateContainer(data){
     $('#board').css('opacity', 0);
     if ($(window).width() >= 992){
         onesHeight = 0;
+    } else {
+        onesHeight = null;
     }
     for(i = 0; i < data.length; i++) {
         updateContainerPith(data);
     }
-    $('#board').animate({opacity: 1}, 500);
+    $('#board').animate({opacity: 1}, 300);
 }
 
 function getDataWithNew(){
