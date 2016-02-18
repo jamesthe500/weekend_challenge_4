@@ -25,7 +25,7 @@ mongoDB.on('error', function(err){
 /*console.log(clickers.clickNorm());*/
 
 mongoDB.once('open', function(){
-    console.log("connected to monog!");
+    console.log("Connected to MongoDB");
 });
 
 var bodyParser = require("body-parser");

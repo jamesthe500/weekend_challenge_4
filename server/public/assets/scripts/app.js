@@ -4,11 +4,9 @@ var i = 0;
 var onesHeight = null;
 var allTheAnswers;
 var windowWidth = window.innerWidth;
+todaysQuestion();
 
 $(document).ready(function (){
-    todaysQuestion();
-
-    $('#theQuestion').html(theQuestion);
 
     $('#theForm').submit(function(event){
         event.preventDefault();
@@ -195,7 +193,7 @@ function todaysQuestion(){
     var questions = [];
     $.ajax({
         url: "/data",
-        async: false,
+        async: true,
         success: function(data){
             questions = data.questions;
         }
@@ -205,5 +203,6 @@ function todaysQuestion(){
         var start = 1439096400000; //midnight, the night of 2015-8-9 in CDT
         index = Math.floor((today - start) / 86400000); // That's divided by day in ms.
         theQuestion = questions[index];
+        $('#theQuestion').html(theQuestion);
     });
 }
