@@ -1,7 +1,7 @@
 body {
     color: #ffffff;
     background-color: #ffc4c9;
-
+    overflow-x: hidden;
 }
 
 #theForm {
@@ -93,12 +93,16 @@ input {
     background-color: #00486B;
 }
 
-.leftBlue {
-    position: relative;
-    left: -3px;
-}
+@media (min-width: 992px){
 
-.rightBlue {
-    position: relative;
-    left: 3px;
+
+    .leftBlue {
+        position: relative;
+        left: -3px;
+    }
+
+    .rightBlue {
+        position: relative;
+        left: 3px;
+    }
 }
