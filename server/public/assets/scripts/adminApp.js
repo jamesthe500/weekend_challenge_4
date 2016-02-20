@@ -4,11 +4,9 @@ var i = 0;
 var onesHeight = null;
 var allTheAnswers;
 var windowWidth = window.innerWidth;
+todaysQuestion();
 
 $(document).ready(function (){
-    todaysQuestion();
-
-    $('#theQuestion').html(theQuestion);
 
     $('#theForm').submit(function(event){
         event.preventDefault();
@@ -41,8 +39,11 @@ $(document).ready(function (){
             url: "/board/" + $el.data("id"),
             success: function(data){
                 console.log("He's dead Jim! ", data);
+                console.log(allTheAnswers);
                 $el.parent().slideUp(800, function(){
                     $el.parent().remove();
+                    removeFromLocalArray(data._id);
+                    updateContainer(allTheAnswers);
                 });
 
             },
@@ -55,6 +56,15 @@ $(document).ready(function (){
         });
 
     });
+
+    function removeFromLocalArray(id){
+        for(var i = allTheAnswers.length - 1; i >= 0; i--){
+            if(allTheAnswers[i]._id == id) {
+                allTheAnswers.splice(i, 1);
+                break;
+            }
+        }
+    }
 
     getData();
 
@@ -75,7 +85,7 @@ $(window).resize(function(){
 
 function doAResize() {
     if(windowWidth != window.innerWidth){
-        updateContainer(allTheAnswers);
+        updateContainerW(allTheAnswers);
         windowWidth = window.innerWidth;
     }
 
@@ -114,6 +124,7 @@ function getDataWithNew(){
         url: "/board",
         success: function(data){
             console.log(data);
+            allTheAnswers = data;
             $('#board').append(data);
             updateContainerWithNew(data);
         }
@@ -195,7 +206,7 @@ function todaysQuestion(){
     var questions = [];
     $.ajax({
         url: "/data",
-        async: false,
+        async: true,
         success: function(data){
             questions = data.questions;
         }
@@ -205,5 +216,6 @@ function todaysQuestion(){
         var start = 1439096400000; //midnight, the night of 2015-8-9 in CDT
         index = Math.floor((today - start) / 86400000); // That's divided by day in ms.
         theQuestion = questions[index];
+        $('#theQuestion').html(theQuestion);
     });
 }

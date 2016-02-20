@@ -39,8 +39,11 @@ $(document).ready(function (){
             url: "/board/" + $el.data("id"),
             success: function(data){
                 console.log("He's dead Jim! ", data);
+                console.log(allTheAnswers);
                 $el.parent().slideUp(800, function(){
                     $el.parent().remove();
+                    removeFromLocalArray(data._id);
+                    updateContainer(allTheAnswers);
                 });
 
             },
@@ -53,6 +56,15 @@ $(document).ready(function (){
         });
 
     });
+
+    function removeFromLocalArray(id){
+        for(var i = allTheAnswers.length - 1; i >= 0; i--){
+            if(allTheAnswers[i]._id == id) {
+                allTheAnswers.splice(i, 1);
+                break;
+            }
+        }
+    }
 
     getData();
 
@@ -112,6 +124,7 @@ function getDataWithNew(){
         url: "/board",
         success: function(data){
             console.log(data);
+            allTheAnswers = data;
             $('#board').append(data);
             updateContainerWithNew(data);
         }
