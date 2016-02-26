@@ -155,8 +155,8 @@ function updateContainerPith(data){
     $('#board').prepend("<div class='entry col-xs-12 col-sm-12 col-md-6 col-lg-6 blue" + colorIndex + "'></div>");
     var $el = $("#board").children().first();
     $el.append("<h3>" + data[i].question + "</h3>");
-    $el.append("<p class='word-block aName'>" + data[i].name + " says: </p>");
-    $el.append('<p class="word-block aAnswer">\"' + data[i].answer + '\"</p>');
+    $el.append("<p class='word-block aName'>" + data[i].name.trim() + " says: </p>");
+    $el.append('<p class="word-block aAnswer">\"' + data[i].answer.trim() + '\"</p>');
     $el.append("<button style='left:" + ($el.width() - 35) + "px' class='btn btn-warning deletes' data-id='"+ data[i]._id +"'>DEL</button>"); //disabled for gen. users
     $el.children().last().data("id", data[i]._id);
 

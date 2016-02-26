@@ -30,7 +30,7 @@ mongoDB.once('open', function(){
 
 var bodyParser = require("body-parser");
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({expanded:true}));
+app.use(bodyParser.urlencoded({extended:true}));
 
 app.set("port", (process.env.PORT || 5000));
 
