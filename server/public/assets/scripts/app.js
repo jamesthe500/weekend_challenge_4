@@ -97,8 +97,8 @@ function getData(){
         type: "GET",
         url: "/board",
         success: function(data){
+            console.log(data);
             allTheAnswers = data;
-            $('#board').append(data);
             updateContainer(data);
         }
     })
@@ -107,14 +107,16 @@ function getData(){
 function updateContainer(data){
     $('#board').empty();
     $('#board').css('opacity', 0);
+    var allAnswerText = "";
     if ($(window).width() >= 992){
         onesHeight = 0;
     } else {
         onesHeight = null;
     }
-    for(i = 0; i < data.length; i++) {
-        updateContainerPith(data);
+    for(i = data.length - 1; i >= 0; i--) {
+        allAnswerText += updateContainerPith(data);
     }
+    $('#board').append(allAnswerText);
     $('#board').animate({opacity: 1}, 300);
 }
 
@@ -125,7 +127,6 @@ function getDataWithNew(){
         success: function(data){
             console.log(data);
             allTheAnswers = data;
-            $('#board').append(data);
             updateContainerWithNew(data);
         }
     })
@@ -152,13 +153,13 @@ function updateContainerWithNew(data){
 
 function updateContainerPith(data){
     var colorIndex = data[i].index % 8;
-    $('#board').prepend("<div class='entry col-xs-12 col-sm-12 col-md-6 col-lg-6 blue" + colorIndex + "'></div>");
-    var $el = $("#board").children().first();
-    $el.append("<h3>" + data[i].question + "</h3>");
-    $el.append("<p class='word-block aName'>" + data[i].name.trim() + " says: </p>");
-    $el.append('<p class="word-block aAnswer">\"' + data[i].answer.trim() + '\"</p>');
+    var thisAnswer = "<div class='entry col-xs-12 col-sm-12 col-md-6 col-lg-6 blue" + colorIndex + "'>";
+    //var $el = $("#board").children().first();
+    thisAnswer += "<h3>" + data[i].question + "</h3>";
+    thisAnswer += "<p class='word-block aName'>" + data[i].name.trim() + " says: </p>";
+    thisAnswer += '<p class="word-block aAnswer">\"' + data[i].answer.trim() + '\"</p>';
     /*$el.append("<button style='left:" + ($el.width() - 35) + "px' class='btn btn-warning deletes' data-id='"+ data[i]._id +"'>DEL</button>");*/ //disabled for gen. users
-    $el.children().last().data("id", data[i]._id);
+    // $el.children().last().data("id", data[i]._id); NUKE?
 
     // Setting heights: 1st, see if the screen is even wide enough for mucking about
     if (onesHeight != null){
@@ -199,6 +200,8 @@ function updateContainerPith(data){
         /*$el.find("button").css("top", ($el.height() -29) + "px");
         $el.next().find("button").css("top", ($el.next().height() -29) + "px");*/ // disabled for general users
     }
+    thisAnswer += "</div>";
+    return thisAnswer;
 }
 
 
