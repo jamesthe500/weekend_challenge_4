@@ -177,7 +177,6 @@ function updateContainerPith(data){
     thisAnswer += "<button class='btn btn-warning deletes' data-id='"+ data[i]._id +"'>DEL</button>"; //disabled for gen. users
     thisAnswer += "</div>";
     return thisAnswer;
-
 }
 
 
