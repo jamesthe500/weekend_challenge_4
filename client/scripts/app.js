@@ -11,7 +11,6 @@ $(document).ready(function (){
     $('#theForm').submit(function(event){
         event.preventDefault();
         var questionPkg = encodeURI(theQuestion);
-        console.log($('#theForm'));
         var formData = $('#theForm').serialize() + "&question=" + questionPkg + "&index=" + index;
         if (formData.indexOf('%3C') > 0) {
             return alert("Please don't use the greater-than (>), nor the less-than (<) symbols.");
@@ -19,7 +18,6 @@ $(document).ready(function (){
         (formData.indexOf('%3E') > 0) {
             return alert("Please don't use the greater-than (>), nor the less-than (<) symbols.");
         } else {
-            console.log(formData);
             $.ajax({
                 type: "POST",
                 url: "/board",
@@ -34,12 +32,11 @@ $(document).ready(function (){
 
     $("#board").on('click', 'button', function(){
         var $el = $(this);
+        console.log($el);
         $.ajax({
             type: "DELETE",
             url: "/board/" + $el.data("id"),
             success: function(data){
-                console.log("He's dead Jim! ", data);
-                console.log(allTheAnswers);
                 $el.parent().slideUp(800, function(){
                     $el.parent().remove();
                     removeFromLocalArray(data._id);
@@ -97,9 +94,9 @@ function getData(){
         type: "GET",
         url: "/board",
         success: function(data){
-            console.log(data);
             allTheAnswers = data;
             updateContainer(data);
+            adjustAnswerHeights(data);
         }
     })
 }
@@ -118,6 +115,7 @@ function updateContainer(data){
     }
     $('#board').append(allAnswerText);
     $('#board').animate({opacity: 1}, 300);
+    adjustAnswerHeights(data);
 }
 
 function getDataWithNew(){
@@ -125,7 +123,6 @@ function getDataWithNew(){
         type: "GET",
         url: "/board",
         success: function(data){
-            console.log(data);
             allTheAnswers = data;
             updateContainerWithNew(data);
         }
@@ -133,76 +130,54 @@ function getDataWithNew(){
 }
 
 function updateContainerWithNew(data){
+    var allAnswerText = "";
     $('#board').empty();
+    $('#board').css('opacity', 0);
     if ($(window).width() >= 992){
         onesHeight = 0;
     }
-    for(i = 0; i < data.length; i++){
-        if (i+1 == data.length){
-            updateContainerPith(data);
-            var $el = $("#board").children().first();
-            $el.css("display", "none");
-            $el.slideDown(600, function(){
-                $('#name, #answer').val('');
-            });
+    for(i = data.length - 1; i >= 0; i--){
+        allAnswerText += updateContainerPith(data);
+    }
+    $('#board').append(allAnswerText);
+    var $el = $("#board").children().first();
+    $el.css("display", "none");
+    adjustAnswerHeights(data);
+    $('#board').animate({opacity: 1}, 300);
+    $el.slideDown(900, function(){
+        $('#name, #answer').val('');
+    });
+
+}
+
+// after the dom has been built, this adjusts the heights
+function adjustAnswerHeights(data){
+    var $el = $('#board').children();
+    for(var i = 0; i < data.length; i += 2){
+        $el.eq(i).addClass('leftBlue');
+        $el.eq(i).next().addClass('rightBlue');
+        if ($el.eq(i).height() > $el.eq(i).next().height()){
+            onesHeight = $el.eq(i).height();
+            $el.eq(i).next().height(onesHeight);
         } else {
-            updateContainerPith(data);
+            onesHeight = $el.eq(i).next().height();
+            $el.eq(i).height(onesHeight);
         }
+       /* $el.eq(i).find("button").css({top: $el.eq(i).height() -29 + "px", left: + $el.eq(i).width() - 35 + "px"}).data("id", $el.eq(i).find("button").attr("data-id"));
+        $el.eq(i).next().find("button").css({top: ($el.eq(i).next().height() -29) + "px", left: + $el.eq(i).next().width() - 35 + "px"}).data("id", $el.eq(i).next().find("button").attr("data-id")); */// disabled for general users
     }
 }
 
 function updateContainerPith(data){
     var colorIndex = data[i].index % 8;
-
-
-    // Setting heights: 1st, see if the screen is even wide enough for mucking about
-    if (onesHeight != null){
-        // if the total number of answers is even, follow  this pattern. Odd- the other.
-        if (data.length % 2 == 0){
-            // if we're on an even number, set the heights. otherwise, carry on.
-            if (i % 2 != 0){
-                $el.addClass('leftBlue');
-                $el.next().addClass('rightBlue');
-                if ($el.height() > $el.next().height()){
-                    onesHeight = $el.height();
-                    $el.next().height(onesHeight);
-                    $el.height(onesHeight);
-                } else {
-                    onesHeight = $el.next().height();
-                    $el.height(onesHeight);
-                    $el.next().height(onesHeight);
-                }
-
-            }
-        } else {
-            // Now if it's odd, set heights, otherwise carry on.
-            if (i % 2 == 0){
-                $el.addClass('leftBlue');
-                $el.next().addClass('rightBlue');
-                if ($el.height() > $el.next().height()){
-                    onesHeight = $el.height();
-                    $el.next().height(onesHeight);
-                    $el.height(onesHeight);
-                } else {
-                    onesHeight = $el.next().height();
-                    $el.height(onesHeight);
-                    $el.next().height(onesHeight);
-                }
-
-            }
-        }
-        /*$el.find("button").css("top", ($el.height() -29) + "px");
-        $el.next().find("button").css("top", ($el.next().height() -29) + "px");*/ // disabled for general users
-    }
-    var thisAnswer = "<div class='entry col-xs-12 col-sm-12 col-md-6 col-lg-6 blue" + colorIndex + "' style='height: " + answersHeight + "px;'>";
-    //var $el = $("#board").children().first();
+    var thisAnswer = "<div class='entry col-xs-12 col-sm-12 col-md-6 col-lg-6 blue" + colorIndex + "'>";
     thisAnswer += "<h3>" + data[i].question + "</h3>";
     thisAnswer += "<p class='word-block aName'>" + data[i].name.trim() + " says: </p>";
     thisAnswer += '<p class="word-block aAnswer">\"' + data[i].answer.trim() + '\"</p>';
-    /*$el.append("<button style='left:" + ($el.width() - 35) + "px' class='btn btn-warning deletes' data-id='"+ data[i]._id +"'>DEL</button>");*/ //disabled for gen. users
-    // $el.children().last().data("id", data[i]._id); NUKE?
+    /*thisAnswer += "<button class='btn btn-warning deletes' data-id='"+ data[i]._id +"'>DEL</button>";*/ //disabled for gen. users
     thisAnswer += "</div>";
     return thisAnswer;
+
 }
 
 
