@@ -651,17 +651,40 @@
     "Are you silly?",
     "Do you have time to spare?",
 
-    "What kind of mouse do you prefer?",
-    "What kind of moose do you prefer?",
+    "What song is all the rage in your household?",
+    "For whom did you save the last dance?",
     "Are you super-busy?",
     "Did you send a postcard today?",
     "Have you had that baby yet?",
     "Will it get better someday?",
     "Are you open for suggestions?",
 
+    "Where are your peoples at?",
+    "Would it be worth it to tame a wild fox?",
+    "Any news?",
+    "Is your water bottle full?",
+    "What kind of mouse do you prefer?",
+    "What kind of moose do you prefer?",
+    "What timepiece do you most often use to know what time it is?",
+
+    "Are your shoes comfy?",
+    "Is all the snow gone?",
+    "Who is your favorite classic author?",
+    "Is your license due for renewal soon?",
+    "When was the last time you got to swim in salt water?",
+    "How into coupon clipping do you get?",
+    "For what must you atone?",
+
     "Is this the last question in the queue?",
 
-    ""
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
 
+    ""
   ]
 }

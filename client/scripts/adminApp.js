@@ -194,6 +194,6 @@ function todaysQuestion(){
         var start = 1439096400000; //midnight, the night of 2015-8-9 in CDT
         index = Math.floor((today - start) / 86400000); // That's divided by day in ms.
         theQuestion = questions[index];
-        $('#theQuestion').html(theQuestion);
+        $('#theQuestion').html(theQuestion + " (" + ((questions.length - 10) - index) + " left)"); // shows the number left, assumes the warning queston is in there as well as 7 blanks.
     });
 }
