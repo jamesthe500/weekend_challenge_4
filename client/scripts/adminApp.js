@@ -110,7 +110,7 @@ function updateContainer(data){
     } else {
         onesHeight = null;
     }
-    for(i = data.length - 1; i >= 0; i--) {
+    for(i = data.length - 1; i >= data.length - 100; i--) {
         allAnswerText += updateContainerPith(data);
     }
     $('#board').append(allAnswerText);

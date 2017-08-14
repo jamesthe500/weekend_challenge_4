@@ -20,6 +20,8 @@ router.delete("/:id", function(req, res, next){
 });
 
 router.get("/", function(req, res, next){
+    // consoles for figuring out a way to return fewer results.
+    // maybe better to do it on the logic- only print a select few.
     /*console.log(res.json.length);
     console.log(res.json);
     console.log("that was entry");*/
